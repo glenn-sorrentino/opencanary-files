@@ -1,0 +1,18 @@
+# /etc/systemd/system/opencanary.service
+
+[Unit]
+Description=OpenCanary
+After=syslog.target
+After=network-online.target
+
+[Service]
+User=root
+Type=simple
+RemainAfterExit=yes
+Restart=always
+RestartSec=10s
+ExecStart=/home/microphone/env/bin/opencanaryd --start
+ExecStop=/home/microphone/env/bin/opencanaryd --stop
+
+[Install]
+WantedBy=multi-user.target
